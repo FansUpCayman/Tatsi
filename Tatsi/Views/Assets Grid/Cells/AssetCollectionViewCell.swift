@@ -75,6 +75,10 @@ final internal class AssetCollectionViewCell: UICollectionViewCell {
         return iconView
     }()
     
+
+    private let numberLabel = UILabel()
+    private let numberContainer = UIView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -95,6 +99,33 @@ final internal class AssetCollectionViewCell: UICollectionViewCell {
         self.isAccessibilityElement = true
         
         self.setupConstraints()
+
+        iconView.alpha = 0
+
+        numberContainer.layer.borderWidth = 1
+        numberContainer.layer.borderColor = UIColor.white.cgColor
+        numberContainer.layer.cornerRadius = 10
+        numberContainer.backgroundColor = .blue
+        numberContainer.clipsToBounds = true
+        numberContainer.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(numberContainer)
+
+        numberLabel.font = .systemFont(ofSize: 12)
+        numberLabel.textColor = .white
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberContainer.addSubview(numberLabel)
+
+        NSLayoutConstraint.activate([
+            numberContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
+            numberContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            numberContainer.widthAnchor.constraint(equalToConstant: 20),
+            numberContainer.heightAnchor.constraint(equalToConstant: 20),
+
+            numberLabel.centerXAnchor.constraint(equalTo: numberContainer.centerXAnchor),
+            numberLabel.centerYAnchor.constraint(equalTo: numberContainer.centerYAnchor),
+        ])
+
+        numberContainer.isHidden = true
     }
     
     private func setupConstraints() {
@@ -125,7 +156,8 @@ final internal class AssetCollectionViewCell: UICollectionViewCell {
         
         // Set the correct checkmark color
         self.iconView.tintColor = self.colors?.checkMark ?? self.colors?.link
-        
+        numberContainer.backgroundColor = iconView.tintColor
+
         self.startLoadingImage()
     }
     
@@ -178,6 +210,13 @@ final internal class AssetCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             self.selectedOverlay.isHidden = !self.isSelected
+            numberContainer.isHidden = !isSelected
+        }
+    }
+
+    var number: String? {
+        didSet {
+            numberLabel.text = number
         }
     }
 }

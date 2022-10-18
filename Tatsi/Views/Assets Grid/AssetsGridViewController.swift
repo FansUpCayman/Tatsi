@@ -35,6 +35,7 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
     internal fileprivate(set) var selectedAssets = [PHAsset]() {
         didSet {
             self.reloadDoneButtonState()
+            reloadSelection()
         }
     }
     
@@ -433,9 +434,23 @@ extension AssetsGridViewController {
         cell.imageManager = self.thumbnailCachingManager
         cell.asset = asset
         cell.reloadContents()
+        updateSelection(for: cell, asset: asset)
         return cell
     }
-    
+
+  override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    if let cell = cell as? AssetCollectionViewCell, let asset = cell.asset {
+      updateSelection(for: cell, asset: asset)
+    }
+  }
+
+  private func updateSelection(for cell: AssetCollectionViewCell, asset: PHAsset) {
+    if let index = selectedAssets.firstIndex(of: asset) {
+      cell.number = String(index + 1)
+    } else {
+      cell.number = nil
+    }
+  }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -477,7 +492,14 @@ extension AssetsGridViewController {
         }
         self.selectedAssets.remove(at: index)
     }
-    
+
+    private func reloadSelection() {
+      collectionView.visibleCells.compactMap({ $0 as? AssetCollectionViewCell }).forEach { cell in
+        if let asset = cell.asset {
+          updateSelection(for: cell, asset: asset)
+        }
+      }
+    }
 }
 
 // MARK: - UIScrollViewDelegate

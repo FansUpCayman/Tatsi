@@ -109,7 +109,7 @@
 		0C5B617A1F0E302C005A25CE /* TatsiPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TatsiPickerViewController.swift; sourceTree = "<group>"; };
 		0C5B617C1F0E32C0005A25CE /* TatsiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TatsiConfig.swift; sourceTree = "<group>"; };
 		0C5B617E1F0E3521005A25CE /* TatsiPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TatsiPickerViewControllerDelegate.swift; sourceTree = "<group>"; };
-		0C5B61821F0E3681005A25CE /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C5B61821F0E3681005A25CE /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
 		0C5B61831F0E3681005A25CE /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C5B61861F0E369A005A25CE /* AssetsGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsGridViewController.swift; sourceTree = "<group>"; };
 		0C5B61881F0E36B4005A25CE /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
